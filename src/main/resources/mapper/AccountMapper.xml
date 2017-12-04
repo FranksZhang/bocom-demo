@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bocom.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.bocom.po.Account" >
+    <result column="acno" property="acno" jdbcType="VARCHAR" />
+    <result column="acname" property="acname" jdbcType="VARCHAR" />
+    <result column="acaddress" property="acaddress" jdbcType="VARCHAR" />
+    <result column="accurrency" property="accurrency" jdbcType="VARCHAR" />
+    <result column="acbalance" property="acbalance" jdbcType="DECIMAL" />
+    <result column="acbalance_ava" property="acbalanceAva" jdbcType="DECIMAL" />
+    <result column="acbod" property="acbod" jdbcType="VARCHAR" />
+    <result column="acbodname" property="acbodname" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.bocom.po.Account" >
+    insert into account (acno, acname, acaddress, 
+      accurrency, acbalance, acbalance_ava, 
+      acbod, acbodname)
+    values (#{acno,jdbcType=VARCHAR}, #{acname,jdbcType=VARCHAR}, #{acaddress,jdbcType=VARCHAR}, 
+      #{accurrency,jdbcType=VARCHAR}, #{acbalance,jdbcType=DECIMAL}, #{acbalanceAva,jdbcType=DECIMAL}, 
+      #{acbod,jdbcType=VARCHAR}, #{acbodname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bocom.po.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acno != null" >
+        acno,
+      </if>
+      <if test="acname != null" >
+        acname,
+      </if>
+      <if test="acaddress != null" >
+        acaddress,
+      </if>
+      <if test="accurrency != null" >
+        accurrency,
+      </if>
+      <if test="acbalance != null" >
+        acbalance,
+      </if>
+      <if test="acbalanceAva != null" >
+        acbalance_ava,
+      </if>
+      <if test="acbod != null" >
+        acbod,
+      </if>
+      <if test="acbodname != null" >
+        acbodname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acno != null" >
+        #{acno,jdbcType=VARCHAR},
+      </if>
+      <if test="acname != null" >
+        #{acname,jdbcType=VARCHAR},
+      </if>
+      <if test="acaddress != null" >
+        #{acaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="accurrency != null" >
+        #{accurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="acbalance != null" >
+        #{acbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="acbalanceAva != null" >
+        #{acbalanceAva,jdbcType=DECIMAL},
+      </if>
+      <if test="acbod != null" >
+        #{acbod,jdbcType=VARCHAR},
+      </if>
+      <if test="acbodname != null" >
+        #{acbodname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

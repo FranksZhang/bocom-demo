@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bocom.dao.TranactionMapper" >
+  <resultMap id="BaseResultMap" type="com.bocom.po.Tranaction" >
+    <id column="trid" property="trid" jdbcType="INTEGER" />
+    <result column="trstatus" property="trstatus" jdbcType="VARCHAR" />
+    <result column="trdate" property="trdate" jdbcType="VARCHAR" />
+    <result column="trtime" property="trtime" jdbcType="VARCHAR" />
+    <result column="trtype" property="trtype" jdbcType="VARCHAR" />
+    <result column="trserial" property="trserial" jdbcType="VARCHAR" />
+    <result column="trserialnum" property="trserialnum" jdbcType="VARCHAR" />
+    <result column="traccount" property="traccount" jdbcType="VARCHAR" />
+    <result column="trmark" property="trmark" jdbcType="VARCHAR" />
+    <result column="trcurrency" property="trcurrency" jdbcType="VARCHAR" />
+    <result column="tramount" property="tramount" jdbcType="DECIMAL" />
+    <result column="trbalance" property="trbalance" jdbcType="DECIMAL" />
+    <result column="trbalance_ava" property="trbalanceAva" jdbcType="DECIMAL" />
+    <result column="traccount_to" property="traccountTo" jdbcType="VARCHAR" />
+    <result column="trbill_type" property="trbillType" jdbcType="VARCHAR" />
+    <result column="trbill_num" property="trbillNum" jdbcType="VARCHAR" />
+    <result column="trbill_name" property="trbillName" jdbcType="VARCHAR" />
+    <result column="trbill_sign_date" property="trbillSignDate" jdbcType="VARCHAR" />
+    <result column="trpostscript" property="trpostscript" jdbcType="VARCHAR" />
+    <result column="trremark" property="trremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    trid, trstatus, trdate, trtime, trtype, trserial, trserialnum, traccount, trmark, 
+    trcurrency, tramount, trbalance, trbalance_ava, traccount_to, trbill_type, trbill_num, 
+    trbill_name, trbill_sign_date, trpostscript, trremark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tranaction
+    where trid = #{trid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tranaction
+    where trid = #{trid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bocom.po.Tranaction" >
+    insert into tranaction (trid, trstatus, trdate, 
+      trtime, trtype, trserial, 
+      trserialnum, traccount, trmark, 
+      trcurrency, tramount, trbalance, 
+      trbalance_ava, traccount_to, trbill_type, 
+      trbill_num, trbill_name, trbill_sign_date, 
+      trpostscript, trremark)
+    values (#{trid,jdbcType=INTEGER}, #{trstatus,jdbcType=VARCHAR}, #{trdate,jdbcType=VARCHAR}, 
+      #{trtime,jdbcType=VARCHAR}, #{trtype,jdbcType=VARCHAR}, #{trserial,jdbcType=VARCHAR}, 
+      #{trserialnum,jdbcType=VARCHAR}, #{traccount,jdbcType=VARCHAR}, #{trmark,jdbcType=VARCHAR}, 
+      #{trcurrency,jdbcType=VARCHAR}, #{tramount,jdbcType=DECIMAL}, #{trbalance,jdbcType=DECIMAL}, 
+      #{trbalanceAva,jdbcType=DECIMAL}, #{traccountTo,jdbcType=VARCHAR}, #{trbillType,jdbcType=VARCHAR}, 
+      #{trbillNum,jdbcType=VARCHAR}, #{trbillName,jdbcType=VARCHAR}, #{trbillSignDate,jdbcType=VARCHAR}, 
+      #{trpostscript,jdbcType=VARCHAR}, #{trremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bocom.po.Tranaction" >
+    insert into tranaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trid != null" >
+        trid,
+      </if>
+      <if test="trstatus != null" >
+        trstatus,
+      </if>
+      <if test="trdate != null" >
+        trdate,
+      </if>
+      <if test="trtime != null" >
+        trtime,
+      </if>
+      <if test="trtype != null" >
+        trtype,
+      </if>
+      <if test="trserial != null" >
+        trserial,
+      </if>
+      <if test="trserialnum != null" >
+        trserialnum,
+      </if>
+      <if test="traccount != null" >
+        traccount,
+      </if>
+      <if test="trmark != null" >
+        trmark,
+      </if>
+      <if test="trcurrency != null" >
+        trcurrency,
+      </if>
+      <if test="tramount != null" >
+        tramount,
+      </if>
+      <if test="trbalance != null" >
+        trbalance,
+      </if>
+      <if test="trbalanceAva != null" >
+        trbalance_ava,
+      </if>
+      <if test="traccountTo != null" >
+        traccount_to,
+      </if>
+      <if test="trbillType != null" >
+        trbill_type,
+      </if>
+      <if test="trbillNum != null" >
+        trbill_num,
+      </if>
+      <if test="trbillName != null" >
+        trbill_name,
+      </if>
+      <if test="trbillSignDate != null" >
+        trbill_sign_date,
+      </if>
+      <if test="trpostscript != null" >
+        trpostscript,
+      </if>
+      <if test="trremark != null" >
+        trremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trid != null" >
+        #{trid,jdbcType=INTEGER},
+      </if>
+      <if test="trstatus != null" >
+        #{trstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="trdate != null" >
+        #{trdate,jdbcType=VARCHAR},
+      </if>
+      <if test="trtime != null" >
+        #{trtime,jdbcType=VARCHAR},
+      </if>
+      <if test="trtype != null" >
+        #{trtype,jdbcType=VARCHAR},
+      </if>
+      <if test="trserial != null" >
+        #{trserial,jdbcType=VARCHAR},
+      </if>
+      <if test="trserialnum != null" >
+        #{trserialnum,jdbcType=VARCHAR},
+      </if>
+      <if test="traccount != null" >
+        #{traccount,jdbcType=VARCHAR},
+      </if>
+      <if test="trmark != null" >
+        #{trmark,jdbcType=VARCHAR},
+      </if>
+      <if test="trcurrency != null" >
+        #{trcurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="tramount != null" >
+        #{tramount,jdbcType=DECIMAL},
+      </if>
+      <if test="trbalance != null" >
+        #{trbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="trbalanceAva != null" >
+        #{trbalanceAva,jdbcType=DECIMAL},
+      </if>
+      <if test="traccountTo != null" >
+        #{traccountTo,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillType != null" >
+        #{trbillType,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillNum != null" >
+        #{trbillNum,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillName != null" >
+        #{trbillName,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillSignDate != null" >
+        #{trbillSignDate,jdbcType=VARCHAR},
+      </if>
+      <if test="trpostscript != null" >
+        #{trpostscript,jdbcType=VARCHAR},
+      </if>
+      <if test="trremark != null" >
+        #{trremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bocom.po.Tranaction" >
+    update tranaction
+    <set >
+      <if test="trstatus != null" >
+        trstatus = #{trstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="trdate != null" >
+        trdate = #{trdate,jdbcType=VARCHAR},
+      </if>
+      <if test="trtime != null" >
+        trtime = #{trtime,jdbcType=VARCHAR},
+      </if>
+      <if test="trtype != null" >
+        trtype = #{trtype,jdbcType=VARCHAR},
+      </if>
+      <if test="trserial != null" >
+        trserial = #{trserial,jdbcType=VARCHAR},
+      </if>
+      <if test="trserialnum != null" >
+        trserialnum = #{trserialnum,jdbcType=VARCHAR},
+      </if>
+      <if test="traccount != null" >
+        traccount = #{traccount,jdbcType=VARCHAR},
+      </if>
+      <if test="trmark != null" >
+        trmark = #{trmark,jdbcType=VARCHAR},
+      </if>
+      <if test="trcurrency != null" >
+        trcurrency = #{trcurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="tramount != null" >
+        tramount = #{tramount,jdbcType=DECIMAL},
+      </if>
+      <if test="trbalance != null" >
+        trbalance = #{trbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="trbalanceAva != null" >
+        trbalance_ava = #{trbalanceAva,jdbcType=DECIMAL},
+      </if>
+      <if test="traccountTo != null" >
+        traccount_to = #{traccountTo,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillType != null" >
+        trbill_type = #{trbillType,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillNum != null" >
+        trbill_num = #{trbillNum,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillName != null" >
+        trbill_name = #{trbillName,jdbcType=VARCHAR},
+      </if>
+      <if test="trbillSignDate != null" >
+        trbill_sign_date = #{trbillSignDate,jdbcType=VARCHAR},
+      </if>
+      <if test="trpostscript != null" >
+        trpostscript = #{trpostscript,jdbcType=VARCHAR},
+      </if>
+      <if test="trremark != null" >
+        trremark = #{trremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where trid = #{trid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bocom.po.Tranaction" >
+    update tranaction
+    set trstatus = #{trstatus,jdbcType=VARCHAR},
+      trdate = #{trdate,jdbcType=VARCHAR},
+      trtime = #{trtime,jdbcType=VARCHAR},
+      trtype = #{trtype,jdbcType=VARCHAR},
+      trserial = #{trserial,jdbcType=VARCHAR},
+      trserialnum = #{trserialnum,jdbcType=VARCHAR},
+      traccount = #{traccount,jdbcType=VARCHAR},
+      trmark = #{trmark,jdbcType=VARCHAR},
+      trcurrency = #{trcurrency,jdbcType=VARCHAR},
+      tramount = #{tramount,jdbcType=DECIMAL},
+      trbalance = #{trbalance,jdbcType=DECIMAL},
+      trbalance_ava = #{trbalanceAva,jdbcType=DECIMAL},
+      traccount_to = #{traccountTo,jdbcType=VARCHAR},
+      trbill_type = #{trbillType,jdbcType=VARCHAR},
+      trbill_num = #{trbillNum,jdbcType=VARCHAR},
+      trbill_name = #{trbillName,jdbcType=VARCHAR},
+      trbill_sign_date = #{trbillSignDate,jdbcType=VARCHAR},
+      trpostscript = #{trpostscript,jdbcType=VARCHAR},
+      trremark = #{trremark,jdbcType=VARCHAR}
+    where trid = #{trid,jdbcType=INTEGER}
+  </update>
+</mapper>
