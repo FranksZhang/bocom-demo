@@ -1,7 +1,10 @@
 package com.bocom.dao;
 
 import com.bocom.po.Tranaction;
+import com.bocom.vo.TransactionDetail;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface TranactionMapper {
@@ -16,4 +19,6 @@ public interface TranactionMapper {
     int updateByPrimaryKeySelective(Tranaction record);
 
     int updateByPrimaryKey(Tranaction record);
+
+    List<TransactionDetail> selectByAccount(String account);
 }

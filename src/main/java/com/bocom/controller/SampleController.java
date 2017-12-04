@@ -2,16 +2,28 @@ package com.bocom.controller;
 
 import com.bocom.dao.AccountMapper;
 import com.bocom.po.Account;
+import com.bocom.service.TransactionService;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.xml.sax.InputSource;
+
+import java.io.IOException;
+import java.io.StringReader;
 
 @Controller
 public class SampleController {
 
     @Autowired
     private AccountMapper accountMapper;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @RequestMapping("/")
     @ResponseBody
@@ -21,9 +33,8 @@ public class SampleController {
 
     @RequestMapping(value = "/getTransactionDetailByAccount" )
     @ResponseBody
-    public String getDealDetailByAccount (String accout) {
-
-        return "nihao";
+    public String getDealDetailByAccount (String account) {
+        return transactionService.getDealDetailByAccount(account);
     }
 
     @RequestMapping("/save")
@@ -35,5 +46,6 @@ public class SampleController {
         accountMapper.insert(account);
         return account.getAcno().toString();
     }
+
 
 }

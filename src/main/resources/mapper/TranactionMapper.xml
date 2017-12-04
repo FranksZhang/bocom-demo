@@ -23,11 +23,29 @@
     <result column="trpostscript" property="trpostscript" jdbcType="VARCHAR" />
     <result column="trremark" property="trremark" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <resultMap id="DealDetailMap" type="com.bocom.vo.TransactionDetail" extends="BaseResultMap">
+    <result column="acname" property="trname" jdbcType="VARCHAR" />
+    <result column="acname2" property="trnameTo" jdbcType="VARCHAR" />
+    <result column="acaddress" property="traddressTo" jdbcType="VARCHAR" />
+    <result column="acbod" property="trbodTo" jdbcType="VARCHAR" />
+    <result column="acbodname" property="trbodnameTo" jdbcType="VARCHAR" />
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     trid, trstatus, trdate, trtime, trtype, trserial, trserialnum, traccount, trmark, 
     trcurrency, tramount, trbalance, trbalance_ava, traccount_to, trbill_type, trbill_num, 
     trbill_name, trbill_sign_date, trpostscript, trremark
   </sql>
+
+  <select id="selectByAccount" resultMap="DealDetailMap" parameterType="java.lang.String" >
+    select trid, trstatus, trdate, trtime, trtype, trserial, trserialnum, traccount, trmark,
+    trcurrency, tramount, trbalance, trbalance_ava, traccount_to, trbill_type, trbill_num,
+    trbill_name, trbill_sign_date, trpostscript, trremark, a1.acname, a2.acname as acname2, a2.acaddress,
+    a2.acbod, a2.acbodname from tranaction, account a1, account a2
+    where traccount = a1.acno and traccount_to = a2.acno and traccount = #{account, jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
