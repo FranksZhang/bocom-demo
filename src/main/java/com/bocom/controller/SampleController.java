@@ -36,16 +36,4 @@ public class SampleController {
     public String getDealDetailByAccount (String account) {
         return transactionService.getDealDetailByAccount(account);
     }
-
-    @RequestMapping("/save")
-    @ResponseBody
-    public String save() {
-        Account account = new Account();
-        account.setAcno("001");
-        account.setAcname("diaolao");
-        accountMapper.insert(account);
-        return account.getAcno().toString();
-    }
-
-
 }
